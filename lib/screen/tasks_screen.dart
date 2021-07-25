@@ -1,14 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_to_do_list/screen/add_tasks_screen.dart';
 import 'package:flutter_to_do_list/widgets/tasks_list.dart';
 
 class TasksScreen extends StatelessWidget {
+  //way 1 Buttom sheet
+  // Widget buildButtomsheet(BuildContext context) {
+  //   return Container();
+  // }
+  //way 2 buttomSheet
+  // Widget buildButtomSheet(BuildContext context) => Container();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.lightBlueAccent,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            //way 3 buttom sheet
+            builder: (context) => AddTasksScreen(),
+          );
+        },
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
       ),
