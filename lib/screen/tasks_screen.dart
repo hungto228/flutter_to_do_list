@@ -1,15 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_to_do_list/models/task.dart';
 import 'package:flutter_to_do_list/screen/add_tasks_screen.dart';
 import 'package:flutter_to_do_list/widgets/tasks_list.dart';
 
-class TasksScreen extends StatelessWidget {
+class TasksScreen extends StatefulWidget {
   //way 1 Buttom sheet
   // Widget buildButtomsheet(BuildContext context) {
   //   return Container();
   // }
   //way 2 buttomSheet
   // Widget buildButtomSheet(BuildContext context) => Container();
+
+  @override
+  _TasksScreenState createState() => _TasksScreenState();
+}
+
+class _TasksScreenState extends State<TasksScreen> {
+  List<Task> tasks = [
+    Task(name: "hung"),
+    Task(name: "hung2"),
+    Task(name: "hung3"),
+    Task(name: "hung4"),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +38,15 @@ class TasksScreen extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: AddTasksScreen(),
+                child: AddTasksScreen(
+                  (newTaskTitle) {
+                    setState(() {
+                      tasks.add(
+                        Task(name: newTaskTitle),
+                      );
+                    });
+                  },
+                ),
               ),
             ),
           );
@@ -81,7 +102,7 @@ class TasksScreen extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(),
+              child: TasksList(tasks),
             ),
           )
         ],

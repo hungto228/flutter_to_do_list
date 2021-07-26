@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
 class AddTasksScreen extends StatelessWidget {
+  final Function addTaskCallBack;
+
+  AddTasksScreen(this.addTaskCallBack);
+
   @override
   Widget build(BuildContext context) {
+    late String newtaskTitle;
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -36,10 +41,13 @@ class AddTasksScreen extends StatelessWidget {
                     TextStyle(color: Colors.red, fontWeight: FontWeight.w900),
                 prefix: Icon(Icons.add_shopping_cart),
               ),
+              onChanged: (newText) {
+                newtaskTitle = newText;
+              },
             ),
             FlatButton(
               onPressed: () {
-                //add task list
+                addTaskCallBack(newtaskTitle);
               },
               child: Icon(Icons.add),
               color: Colors.lightBlueAccent,
